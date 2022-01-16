@@ -5,7 +5,7 @@
  * delete this file.
  */
 
-import {bundle} from '@remotion/bundler';
+import { bundle } from '@remotion/bundler';
 import {
 	getCompositions,
 	renderFrames,
@@ -15,14 +15,33 @@ import express from 'express';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
+import cors from 'cors'
+import cloudinary from 'cloudinary'
+
+cloudinary.config({
+	cloud_name: "isita",
+	api_key: "739813596913426",
+	api_secret: "_nBKrqtVT8ZZW5zK_jmT8KrICXc",
+})
 
 const app = express();
 const port = process.env.PORT || 8000;
-const compositionId = 'HelloWorld';
+let compositionId;
+
+
+app.use(
+	cors({
+		exposedHeaders: ["Authorization", "Content-type"],
+	})
+);
 
 const cache = new Map();
-
+app.use(cors());
 app.get('/', async (req, res) => {
+
+
+	compositionId = req.query.tipo
+	console.log(req.query);
 	const sendFile = (file) => {
 		fs.createReadStream(file)
 			.pipe(res)
@@ -32,7 +51,21 @@ app.get('/', async (req, res) => {
 	};
 	try {
 		if (cache.get(JSON.stringify(req.query))) {
-			sendFile(cache.get(JSON.stringify(req.query)));
+			cloudinary.v2.uploader.upload(`${cache.get(JSON.stringify(req.query))}`,
+				{
+					resource_type: "video",
+					public_id: "",
+					chunk_size: 6000000,
+					upload_preset: "stories",
+				},
+				function (error, result) {
+					console.log(result);
+					console.log("-------------");
+					console.log(error);
+					res.json(result)
+				});
+			console.log('cached video sent!');
+
 			return;
 		}
 		const bundled = await bundle(path.join(process.cwd(), './src/index.jsx'));
@@ -46,7 +79,7 @@ app.get('/', async (req, res) => {
 		const tmpDir = await fs.promises.mkdtemp(
 			path.join(os.tmpdir(), 'remotion-')
 		);
-		const {assetsInfo} = await renderFrames({
+		const { assetsInfo } = await renderFrames({
 			config: video,
 			webpackBundle: bundled,
 			onStart: () => console.log('Rendering frames...'),
@@ -74,8 +107,25 @@ app.get('/', async (req, res) => {
 			assetsInfo,
 		});
 		cache.set(JSON.stringify(req.query), finalOutput);
-		sendFile(finalOutput);
+		console.log(finalOutput)
+
+		cloudinary.v2.uploader.upload(`${finalOutput}`,
+			{
+				resource_type: "video",
+				public_id: "",
+				chunk_size: 6000000,
+				upload_preset: "stories",
+			},
+			function (error, result) {
+				console.log(result);
+				console.log("-------------");
+				console.log(error);
+				res.json(result)
+
+			});
+
 		console.log('Video rendered and sent!');
+
 	} catch (err) {
 		console.error(err);
 		res.json({

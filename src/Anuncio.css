@@ -1,0 +1,79 @@
+
+.banda {
+  background-color:#F06F46;
+  font-size: 30px;
+  font-family:'HK Grotesk';
+  font-weight: 600;
+  font-size: 2.25rem;
+  color:white;
+  position: absolute;
+  padding:16px;
+}
+
+.videoContainer {
+  position:relative;
+}
+.flickerContainer{
+  width:100%;
+  font-weight: 600;
+  text-transform: uppercase;
+position: absolute;
+height:1841px;
+display:flex;
+flex-direction: column;
+justify-content: center;
+font-family: 'HK Grotesk';
+}
+.flickerContainer span{
+  -webkit-text-fill-color: #171717; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+  text-align:center;
+  width:100%;
+  display:block;
+  font-size:100px;
+}
+
+.temas{
+  font-family: 'HK Grotesk';
+font-weight: 600;
+color:white;
+display:flex;
+flex-direction: column;
+justify-content: center;
+overflow:hidden;
+position: absolute;
+font-size: 180px;
+height:1841px;
+}
+.temas span{
+  margin:8px 0;
+  white-space: nowrap;
+  width:fit-content
+}
+
+.horario{
+  font-family: 'HK Grotesk';
+font-weight: 600;
+color:white;
+display:flex;
+flex-direction: column;
+justify-content: center;
+overflow:hidden;
+position: absolute;
+font-size: 80px;
+height:1841px;
+width:100%
+}
+
+.horario span {
+width:100%;
+text-align: center;
+}
+
+.logoContainer {
+ position:absolute;
+ top:600px;
+ left: 280px;
+
+}

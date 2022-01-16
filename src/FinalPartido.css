@@ -1,0 +1,63 @@
+*{
+  margin:0;
+  padding:0;
+}
+
+#divFinalPartido {
+  font-family: 'Bison' !important;
+  background-color:#FFFCFA;
+  color:#171717;
+  font-size:80px;
+  padding:15px 30px;
+  width:520px;
+  position:absolute;
+  left:80px;
+  top:160px;
+  z-index: 100;
+}
+
+#contenedorImg{
+  width:845px;
+  height:1145px;
+  background-color:red;
+  position:absolute;
+  top:220px;
+  left:120px;
+}
+
+#divNombreEquipos {
+  font-family: 'Bison';
+  background-color:#F06F46;
+  color:#FFFCFA;
+  font-size:80px;
+  padding:15px 30px;
+  position:fixed;
+  top:1340px;
+  right:80px;
+}
+
+#resultados{
+  font-family: 'Bison';
+  display:flex;
+  padding:0 20px;
+  align-items:center;
+  width:100%;
+  position:fixed;
+  justify-content:center;
+  bottom:80px
+}
+
+#resultados >  *{
+margin:0 40px;
+}
+
+#resultados p {
+  font-family: 'Bison';
+font-size:180px;
+color:#FFFCFA
+}
+
+#escudo1, #escudo2 {
+  width:160px;
+  height:160px;
+}
