@@ -1,6 +1,5 @@
 import { Composition } from 'remotion';
 import { Anuncio2 } from './Anuncio2';
-import { AnuncioyLottie } from './AnuncioyLottie';
 import { FinalPartido } from './FinalPartido'
 export const RemotionVideo = () => {
 	return (
@@ -23,15 +22,6 @@ export const RemotionVideo = () => {
 			/>
 
 			<Composition
-				id="Anuncio3"
-				component={AnuncioyLottie}
-				durationInFrames={300}
-				height={1820}
-				width={1080}
-				fps={30}
-			/>
-
-			<Composition
 				id="FinalPartido"
 				component={FinalPartido}
 				durationInFrames={300}
@@ -39,6 +29,7 @@ export const RemotionVideo = () => {
 				width={1080}
 				fps={30}
 				defaultProps={{
+					momento: 'Final del Primer Tiempo',
 					equipo1: 'Nacional',
 					equipo2: 'Defensor',
 					escudo1: 'https://res.cloudinary.com/isita/image/upload/v1640467870/static/escudos/Nacional-1_pe0w5a.png',
