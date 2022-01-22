@@ -1,6 +1,5 @@
 import { interpolate, Sequence, useCurrentFrame, useVideoConfig } from 'remotion';
 import { Video } from "remotion";
-import video from './video/logo.webm'
 
 export const Logo = () => {
   const frame = useCurrentFrame();
